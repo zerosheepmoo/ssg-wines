@@ -32,14 +32,13 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         FOLDER: /
-        GITHUB_ACTOR: zerosheepmoo
       run: |
         apt-get update && \
         apt-get install -y git && \
         cd $GITHUB_WORKSPACE && \
         git init && \
-        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com" && \
-        git config --global user.name "${GITHUB_ACTOR}" && \
+        git config --global user.email "zerosheepmoo@users.noreply.github.com" && \
+        git config --global user.name "zerosheepmoo" && \
         REPOSITORY_PATH="https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" && \
         if [ -z "$BASE_BRANCH" ]
         then
