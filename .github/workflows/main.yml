@@ -28,24 +28,14 @@ jobs:
     - name: Run!
       run: python main.py
 
-    - name: push
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        FOLDER: /
+    - name: Commit files
       run: |
-        apt-get update && \
-        apt-get install -y git && \
-        git init && \
-        git config --global user.email "zerosheepmoo@users.noreply.github.com" && \
-        git config --global user.name "zerosheepmoo" && \
-        cd $GITHUB_WORKSPACE && \
-        REPOSITORY_PATH="https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" && \
-        if [ -z "$BASE_BRANCH" ]
-        then
-          BASE_BRANCH="main"
-        fi
-        git checkout $BASE_BRANCH && \
+        git config --local user.email "zerosheepmoo@users.noreply.github.com"
+        git config --local user.name "zerosheepmoo"
         git add .
-        git commit -m "$BASE_BRANCH 에 deploy - $(date +"%T")" && \
-        git push
-      shell: bash
+        git commit -m "Add changes" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
