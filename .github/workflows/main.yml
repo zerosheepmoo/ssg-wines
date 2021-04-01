@@ -32,6 +32,7 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         FOLDER: /
+        GITHUB_ACTOR: zerosheepmoo
       run: |
         apt-get update && \
         apt-get install -y git && \
