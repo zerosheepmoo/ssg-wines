@@ -33,6 +33,7 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         FOLDER: /
       run: |
+        git init && \
         apt-get update && \
         apt-get install -y git && \
         cd $GITHUB_WORKSPACE && \
