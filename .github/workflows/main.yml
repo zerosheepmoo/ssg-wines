@@ -1,0 +1,27 @@
+name: ssg_scrapper
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: setup python
+      uses: actions/setup-python@v2
+    - name: install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install beautifulsoup4
+        pip install requests
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - name: Run!
+      run: python main.py

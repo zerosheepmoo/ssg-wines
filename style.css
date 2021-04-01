@@ -1,0 +1,25 @@
+.box {
+    background-color: rgb(238, 255, 249);
+    padding: 2em;
+    border: 1px solid black;
+    width: 400px;
+    margin: auto;
+    text-align: center;
+}
+.name {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5em;
+}
+.winetype {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.is-pickup {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.price {
+
+    font-size: 1.2em;
+}
+#container {
+    text-align: center;
+}
