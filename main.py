@@ -25,24 +25,26 @@ page_num = 1
 while True:
     # HTML 코드 받아오기
     headers = {'User-Agent': 'Mozilla/5.0'}
-    response = requests.get("http://www.ssg.com/search.ssg?target=all&query=wine&brand=3000042156&page=" + str(page_num), headers=headers)
+    response = requests.get("https://www.ssg.com/search.ssg?target=all&query=%EC%99%80%EC%9D%B8&ctgId=6000099420&ctgLv=2&page=" + str(page_num), headers=headers)
 
     # BeautifulSoup 타입으로 변형하기
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # "prodName" 클래스가 있을 때만 상품 정보 가져오기
-    if len(soup.select('.csrch_tip')) == 0:
+    if len(soup.select('div.tmpl_noresult')) == 0:
 
         print(str(page_num) + "페이지 수집 중...")
 
         rand_value = randint(1, MAX_SLEEP_TIME)
         time.sleep(rand_value)
 
-        product_names = soup.select('.cunit_info > div.cunit_md.notranslate > div > a > em.tx_ko')
-        product_prices = soup.select('.cunit_info > div.cunit_price.notranslate > div.opt_price > em')
-        product_urls = soup.select('.cunit_prod > div.thmb > a > img')
+        product_names = soup.select('#idProductImg .cunit_info > div.cunit_md.notranslate > div > a > em.tx_ko')
+        product_prices = soup.select('#idProductImg .cunit_info > div.cunit_price > div.opt_price > em')
+        product_urls = soup.select('#idProductImg .cunit_prod > div.thmb > a > img')
         page_num += 1
+
+        print(product_names)
 
         # 서버 과부하 방지를 위한 랜덤 슬립
         rand_value = randint(1, MAX_SLEEP_TIME)
